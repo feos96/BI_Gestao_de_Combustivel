@@ -53,16 +53,6 @@ Este dashboard foi desenvolvido com o objetivo de monitorar e otimizar o consumo
 3. Clique em "Atualizar" para carregar os dados
 4. Explore os filtros, visuais e KPIs de acordo com sua necessidade
 
-## 📂 Estrutura do Projeto
-projeto-gestao-combustivel/
-├── dados/ # Pasta com arquivos de dados de exemplo
-├── docs/ # Documentação adicional (opcional)
-├── imagens/ # Screenshots do dashboard
-├── GestaoCombustivel.pbix # Arquivo principal do Power BI
-└── README.md # Este arquivo
-
-Copy
-
 ## 👨‍💻 Autor
 **Erick Sousa**  
 - Estudante de Engenharia de Controle e Automação – IFCE  
