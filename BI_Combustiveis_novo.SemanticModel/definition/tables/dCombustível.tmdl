@@ -1,0 +1,43 @@
+table dCombustível
+	lineageTag: d8c38f81-8f16-42a2-bba5-3341e61c0153
+
+	column 'Tipo de Combustível'
+		dataType: string
+		lineageTag: b3a61c25-c043-410e-b4a9-7c32e262b5bd
+		summarizeBy: none
+		sourceColumn: Tipo de Combustível
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCombustível = m
+		mode: import
+		queryGroup: Dimenção
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\df.xlsx"), null, true),
+				    Tabela1_Table = Fonte{[Item="Tabela1",Kind="Table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Tabela1_Table,{{"Veículo", type text}, {"Nr. Frota", type text}, {"Grupo de Restrição", type text}, {"Modelo", type text}, {"Cor", type text}, {"Tipo de Frota", type text}, {"Km Inicial", Int64.Type}, {"Horímetro Inicial", Int64.Type}, {"Responsável", type text}, {"Data/Hora", type datetime}, {"Transação Protegida", Int64.Type}, {"Cartão", type text}, {"Estabelecimento", type text}, {"Forma", type text}, {"Cidade", type text}, {"Quilometragem", Int64.Type}, {"Horas", Int64.Type}, {"Serviço", type text}, {"Valor", type number}, {"Km Rodados", type any}, {"Horas Trabalhadas", Int64.Type}, {"Litros", type number}, {"Média Padrão", type any}, {"Km/Litro", type any}, {"Litros/hora", Int64.Type}, {"Valor/litro", type number}, {"Matrícula", Int64.Type}, {"Motorista", type text}, {"Grupo de Restrição Transação", type text}, {"Motivo", type text}, {"UNIDADE", type text}}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(Table.TransformColumnTypes(#"Tipo Alterado", {{"Data/Hora", type text}}, "pt-BR"), "Data/Hora", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"Data/Hora.1", "Data/Hora.2"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"Data/Hora.1", type date}, {"Data/Hora.2", type time}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado1",{{"Data/Hora.1", "Data Transação"}, {"Data/Hora.2", "Hora Transação"}}),
+				    #"Linhas Classificadas" = Table.Sort(#"Colunas Renomeadas",{{"Data Transação", Order.Ascending}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Linhas Classificadas", each true),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"Transação Protegida", type text}}),
+				    #"Dia da Semana Inserido" = Table.AddColumn(#"Tipo Alterado2", "Num da semana", each Date.DayOfWeek([Data Transação]), Int64.Type),
+				    #"Dividir Coluna por Delimitador1" = Table.SplitColumn(#"Dia da Semana Inserido", "Serviço", Splitter.SplitTextByDelimiter("(", QuoteStyle.Csv), {"Serviço.1", "Serviço.2"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador1",{{"Serviço.1", type text}, {"Serviço.2", type text}}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Tipo Alterado3",{{"Serviço.2", "Tipo de Combustível"}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas1",")","",Replacer.ReplaceText,{"Tipo de Combustível"}),
+				    #"Linhas em Branco Removidas" = Table.SelectRows(#"Valor Substituído", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Linhas em Branco Removidas", {"Tipo de Combustível"}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Duplicatas Removidas", {"Tipo de Combustível"}),
+				    #"Linhas em Branco Removidas1" = Table.SelectRows(#"Erros Removidos", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Linhas em Branco Removidas1",{"Tipo de Combustível"}),
+				    #"Linhas em Branco Removidas2" = Table.SelectRows(#"Outras Colunas Removidas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null})))
+				in
+				    #"Linhas em Branco Removidas2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

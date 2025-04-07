@@ -1,0 +1,356 @@
+table 'fTransacoes protegidas'
+	lineageTag: c1bb9f6d-8429-4801-a1be-b27638788dca
+
+	column Veículo
+		dataType: string
+		lineageTag: b16f0128-3d2c-4ae5-a901-804f77dc4dd5
+		summarizeBy: none
+		sourceColumn: Veículo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nr. Frota'
+		dataType: string
+		lineageTag: 9e1c5bd2-f38b-4a99-94b7-653bac2e4f84
+		summarizeBy: none
+		sourceColumn: Nr. Frota
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo de Restrição'
+		dataType: string
+		lineageTag: 3617cfb7-67d6-4695-9cc9-452b02480b24
+		summarizeBy: none
+		sourceColumn: Grupo de Restrição
+
+		annotation SummarizationSetBy = Automatic
+
+	column Modelo
+		dataType: string
+		lineageTag: f675d2bc-5197-4838-b9a3-709ebb07cbcc
+		summarizeBy: none
+		sourceColumn: Modelo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cor
+		dataType: string
+		lineageTag: 7545930c-68e2-4356-872c-5fffa99395b3
+		summarizeBy: none
+		sourceColumn: Cor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Frota'
+		dataType: string
+		lineageTag: b8a13ef0-fe53-4138-bfd6-62fe8ad10d44
+		summarizeBy: none
+		sourceColumn: Tipo de Frota
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Km Inicial'
+		dataType: int64
+		formatString: 0
+		lineageTag: f1773514-af7e-4147-bf66-e44300982fff
+		summarizeBy: sum
+		sourceColumn: Km Inicial
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horímetro Inicial'
+		dataType: int64
+		formatString: 0
+		lineageTag: d3ff7da1-5cee-47da-9161-39c0de9697fa
+		summarizeBy: sum
+		sourceColumn: Horímetro Inicial
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsável
+		dataType: string
+		lineageTag: ee3f2d02-b267-46b5-89ef-8d28164fa0be
+		summarizeBy: none
+		sourceColumn: Responsável
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Transação Protegida'
+		dataType: string
+		lineageTag: 21fccabf-912c-4f76-97ea-bf8e95320460
+		summarizeBy: none
+		sourceColumn: Transação Protegida
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cartão
+		dataType: string
+		lineageTag: a2dc9313-6114-4178-bd04-b062d7574a5f
+		summarizeBy: none
+		sourceColumn: Cartão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Estabelecimento
+		dataType: string
+		lineageTag: 8a29e9ee-17f6-4c92-af88-a4ec682e7f0a
+		summarizeBy: none
+		sourceColumn: Estabelecimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Forma
+		dataType: string
+		lineageTag: e58307f6-1ae4-436a-98ad-87738e79f68c
+		summarizeBy: none
+		sourceColumn: Forma
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cidade
+		dataType: string
+		lineageTag: 8c6ef2d3-5851-4075-b4ad-5fc23b4ac4e6
+		summarizeBy: none
+		sourceColumn: Cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quilometragem
+		dataType: int64
+		formatString: 0
+		lineageTag: ffc3b6b1-3931-49f9-9607-778c16006e84
+		summarizeBy: sum
+		sourceColumn: Quilometragem
+
+		annotation SummarizationSetBy = Automatic
+
+	column Horas
+		dataType: int64
+		formatString: 0
+		lineageTag: baf0f06e-fa45-432f-83dd-610a550dda2b
+		summarizeBy: sum
+		sourceColumn: Horas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: double
+		lineageTag: cb57f27e-93d6-45cb-9ea1-758eb8821e75
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Km Rodados'
+		dataType: string
+		lineageTag: a2155cf2-a12c-4287-93a4-8ab0b301aaba
+		summarizeBy: none
+		sourceColumn: Km Rodados
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas Trabalhadas'
+		dataType: int64
+		formatString: 0
+		lineageTag: d1e84bd3-6043-479d-b65d-dbc40b1ecda2
+		summarizeBy: sum
+		sourceColumn: Horas Trabalhadas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Litros
+		dataType: double
+		lineageTag: 07b81ab3-0279-4777-be8e-3600671a87f3
+		summarizeBy: sum
+		sourceColumn: Litros
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Média Padrão'
+		dataType: string
+		lineageTag: f9e0f6b1-bd03-4751-ad29-a97a1defa9c1
+		summarizeBy: none
+		sourceColumn: Média Padrão
+
+		annotation SummarizationSetBy = Automatic
+
+	column Km/Litro
+		dataType: string
+		lineageTag: d637fddb-7efd-4fd6-b6aa-02c01c2a3cfe
+		summarizeBy: none
+		sourceColumn: Km/Litro
+
+		annotation SummarizationSetBy = Automatic
+
+	column Litros/hora
+		dataType: int64
+		formatString: 0
+		lineageTag: bca611d2-e752-4da7-bffd-d1397acf9cff
+		summarizeBy: sum
+		sourceColumn: Litros/hora
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor/litro
+		dataType: double
+		lineageTag: 23ba4f11-e254-463c-9c8c-4c73278aa255
+		summarizeBy: sum
+		sourceColumn: Valor/litro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Matrícula
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c7e7618-65ee-4793-bc5d-712087a29abb
+		summarizeBy: none
+		sourceColumn: Matrícula
+
+		annotation SummarizationSetBy = Automatic
+
+	column Motorista
+		dataType: string
+		lineageTag: dc8d06dd-ef51-4249-b6f1-bfac72424039
+		summarizeBy: none
+		sourceColumn: Motorista
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Grupo de Restrição Transação'
+		dataType: string
+		lineageTag: da97a37c-2029-433c-bba9-1906b9571839
+		summarizeBy: none
+		sourceColumn: Grupo de Restrição Transação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Motivo
+		dataType: string
+		lineageTag: 63ee8ab3-fe29-4da8-904d-e80f760674c0
+		summarizeBy: none
+		sourceColumn: Motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column UNIDADE
+		dataType: string
+		lineageTag: 202b7547-aac1-4be5-b58c-52fe5f1edd44
+		summarizeBy: none
+		sourceColumn: UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dia da semana' =
+			SWITCH(WEEKDAY('fTransacoes protegidas'[Data Transação],1),
+			        1, "Domingo",
+			        2, "Segunda-feira",
+			        3, "Terça-feira",
+			        4, "Quanta-feira",
+			        5, "Quinta-feira",
+			        6, "Sexta-feira",
+			        7, "Sábado"
+			    )
+		lineageTag: 5e8d8c59-5b3a-4bcc-af4a-25886cc57d74
+		summarizeBy: none
+		sortByColumn: 'Num da semana'
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Transação'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4e9d26f4-4da8-4142-a6af-7db86be459c9
+		summarizeBy: none
+		sourceColumn: Data Transação
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Hora Transação'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: d2f63a10-b49d-47b2-8ed0-61ec71becc64
+		summarizeBy: none
+		sourceColumn: Hora Transação
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column Turno =
+			SWITCH(
+			    true(),
+			    'fTransacoes protegidas'[Hora arredondada] >= 6 && 'fTransacoes protegidas'[Hora arredondada] < 12, "Manhã",
+			    'fTransacoes protegidas'[Hora arredondada] >12 && 'fTransacoes protegidas'[Hora arredondada] < 18, "Tarde", "Noite")
+		lineageTag: 41ef90d7-e24a-4007-a470-08a6d3f297a2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Num da semana'
+		dataType: int64
+		formatString: 0
+		lineageTag: ee6cc808-e5f5-4de9-84d8-830a74d23390
+		summarizeBy: sum
+		sourceColumn: Num da semana
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Hora arredondada' = HOUR('fTransacoes protegidas'[Hora Transação])
+		formatString: 0
+		lineageTag: 65dc16ad-9bd5-4402-98e3-56eb9a47f68d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Serviço.1'
+		dataType: string
+		lineageTag: 4f794b3e-b345-46e6-995c-8d8da8469bb2
+		summarizeBy: none
+		sourceColumn: Serviço.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo combustivel'
+		dataType: string
+		lineageTag: 9f9a451b-d3d8-4822-a600-6bcb1fa07ae4
+		summarizeBy: none
+		sourceColumn: Tipo combustivel
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fTransacoes protegidas' = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\df.xlsx"), null, true),
+				    Tabela1_Table = Fonte{[Item="Tabela1",Kind="Table"]}[Data],
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Tabela1_Table,{{"Veículo", type text}, {"Nr. Frota", type text}, {"Grupo de Restrição", type text}, {"Modelo", type text}, {"Cor", type text}, {"Tipo de Frota", type text}, {"Km Inicial", Int64.Type}, {"Horímetro Inicial", Int64.Type}, {"Responsável", type text}, {"Data/Hora", type datetime}, {"Transação Protegida", Int64.Type}, {"Cartão", type text}, {"Estabelecimento", type text}, {"Forma", type text}, {"Cidade", type text}, {"Quilometragem", Int64.Type}, {"Horas", Int64.Type}, {"Serviço", type text}, {"Valor", type number}, {"Km Rodados", type any}, {"Horas Trabalhadas", Int64.Type}, {"Litros", type number}, {"Média Padrão", type any}, {"Km/Litro", type any}, {"Litros/hora", Int64.Type}, {"Valor/litro", type number}, {"Matrícula", Int64.Type}, {"Motorista", type text}, {"Grupo de Restrição Transação", type text}, {"Motivo", type text}, {"UNIDADE", type text}}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(Table.TransformColumnTypes(#"Tipo Alterado", {{"Data/Hora", type text}}, "pt-BR"), "Data/Hora", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"Data/Hora.1", "Data/Hora.2"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"Data/Hora.1", type date}, {"Data/Hora.2", type time}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado1",{{"Data/Hora.1", "Data Transação"}, {"Data/Hora.2", "Hora Transação"}}),
+				    #"Linhas Classificadas" = Table.Sort(#"Colunas Renomeadas",{{"Data Transação", Order.Ascending}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Linhas Classificadas", each true),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"Transação Protegida", type text}}),
+				    #"Dia da Semana Inserido" = Table.AddColumn(#"Tipo Alterado2", "Num da semana", each Date.DayOfWeek([Data Transação]), Int64.Type),
+				    #"Dividir Coluna por Delimitador1" = Table.SplitColumn(#"Dia da Semana Inserido", "Serviço", Splitter.SplitTextByDelimiter("(", QuoteStyle.None), {"Serviço.1", "Serviço.2"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador1",{{"Serviço.1", type text}, {"Serviço.2", type text}}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Tipo Alterado3",{{"Serviço.2", "Tipo combustivel"}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas1",")","",Replacer.ReplaceText,{"Tipo combustivel"})
+				in
+				    #"Valor Substituído"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

@@ -1,0 +1,48 @@
+table 'Parâmetro posto2'
+	lineageTag: cc515035-a126-49b4-93f3-ea87b6eee869
+
+	column 'Parâmetro posto2'
+		lineageTag: 733026f3-b44f-4182-85e9-9e0e127d122f
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro posto2 Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro posto2 Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro posto2 Campos'
+		isHidden
+		lineageTag: f75a5263-3f23-43cb-bc95-513cb6fd7c23
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro posto2 Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro posto2 Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 82691cc0-9a84-4103-b84e-4fd4a5b8499c
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parâmetro posto2' = calculated
+		mode: import
+		source =
+				{
+				    ("R$ litro medio", NAMEOF('Medidas'[R$ litro medio]), 0),
+				    ("Total litros externo", NAMEOF('Medidas'[Total litros externo]), 1)
+				}
+
+	annotation PBI_Id = f431e31f6106498aacc2a38b7f365533
+

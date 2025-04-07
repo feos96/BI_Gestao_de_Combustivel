@@ -1,0 +1,75 @@
+table dFrotas
+	lineageTag: b88407f0-ffda-4fd3-af20-e73a37a703fc
+
+	column PLACA
+		dataType: string
+		lineageTag: 3e8bb88b-6b9b-4a67-aafb-07fecfea750f
+		summarizeBy: none
+		sourceColumn: PLACA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MODELO VEICULO'
+		dataType: string
+		lineageTag: 4f1254fd-7a84-4d54-8191-715676101a8d
+		summarizeBy: none
+		sourceColumn: MODELO VEICULO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NUMERO FROTA'
+		dataType: string
+		lineageTag: ef80be4b-001e-4a5a-a4a7-4c9876ca1079
+		summarizeBy: none
+		sourceColumn: NUMERO FROTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: 5916e245-6226-4a01-90bf-d9fb4d6a9f2c
+		summarizeBy: none
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dFrotas = m
+		mode: import
+		queryGroup: Dimenção
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\trasacoes.xlsx"), null, true),
+				    Transações_Sheet = Fonte{[Item="Transações",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Transações_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CODIGO TRANSACAO", Int64.Type}, {"FORMA DE PAGAMENTO", type text}, {"CODIGO CLIENTE", Int64.Type}, {"NOME REDUZIDO", type text}, {"DATA TRANSACAO", type datetime}, {"PLACA", type text}, {"TIPO FROTA", type text}, {"MODELO VEICULO", type text}, {"NUMERO FROTA", type text}, {"ANO", Int64.Type}, {"MATRICULA", Int64.Type}, {"NOME MOTORISTA", type text}, {"SERVICO", type text}, {"TIPO COMBUSTIVEL", type text}, {"LITROS", type number}, {"VL/LITRO", type number}, {"HODOMETRO OU HORIMETRO", Int64.Type}, {"KM RODADOS OU HORAS TRABALHADAS", Int64.Type}, {"KM/LITRO OU LITROS/HORA", type number}, {"VALOR EMISSAO", type number}, {"CODIGO ESTABELECIMENTO", Int64.Type}, {"NOME ESTABELECIMENTO", type text}, {"TIPO ESTABELECIMENTO", type text}, {"ENDERECO", type text}, {"BAIRRO", type text}, {"CIDADE", type text}, {"UF", type text}, {"INFORMACAO ADIDIONAL 1", type text}, {"INFORMACAO ADIDIONAL 2", type text}, {"INFORMACAO ADIDIONAL 3", type text}, {"INFORMACAO ADIDIONAL 4", type any}, {"INFORMACAO ADIDIONAL 5", type any}, {"FORMA TRANSACAO", type text}, {"CODIGO LIBERACAO RESTRICAO", Int64.Type}, {"SERIE POS", type text}, {"NUMERO CARTAO", Int64.Type}, {"FAMILIA VEICULO", type text}, {"GRUPO RESTRICAO", type text}, {"CODIGO EMISSORA", type any}, {"RESPONSAVEL", type text}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado", {"CODIGO TRANSACAO"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Erros Removidos",{{"NUMERO CARTAO", type text}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado1", "ENDEREÇO COMPLETO", each [ENDERECO]&", "&[BAIRRO]&", "&[CIDADE]&", "&[UF]&", "&[PAIS]),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"CODIGO TRANSACAO", type text}, {"DATA TRANSACAO", type datetime}, {"MATRICULA", type text}}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(Table.TransformColumnTypes(#"Tipo Alterado2", {{"DATA TRANSACAO", type text}}, "pt-BR"), "DATA TRANSACAO", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"DATA TRANSACAO.1", "DATA TRANSACAO.2"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"DATA TRANSACAO.1", type date}, {"DATA TRANSACAO.2", type time}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado3",{{"DATA TRANSACAO.1", "DATA TRANSACAO"}, {"DATA TRANSACAO.2", "HORA TRANSAÇÃO"}}),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"CODIGO ESTABELECIMENTO", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado4", each true),
+				    #"Tipo Alterado5" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"NUMERO FROTA", type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado5", each true),
+				    #"Erros Removidos1" = Table.RemoveRowsWithErrors(#"Linhas Filtradas1", {"CODIGO LIBERACAO RESTRICAO"}),
+				    #"Erros Removidos2" = Table.RemoveRowsWithErrors(#"Erros Removidos1", {"NUMERO CARTAO"}),
+				    #"Linhas Filtradas2" = Table.SelectRows(#"Erros Removidos2", each ([#"KM/LITRO OU LITROS/HORA"] <> 0)),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linhas Filtradas2", "GRUPO RESTRICAO", "GRUPO RESTRICAO - Copiar"),
+				    #"Dividir Coluna por Delimitador1" = Table.SplitColumn(#"Coluna Duplicada", "GRUPO RESTRICAO - Copiar", Splitter.SplitTextByDelimiter(" (", QuoteStyle.Csv), {"GRUPO RESTRICAO - Copiar.1", "GRUPO RESTRICAO - Copiar.2"}),
+				    #"Tipo Alterado6" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador1",{{"GRUPO RESTRICAO - Copiar.1", type text}, {"GRUPO RESTRICAO - Copiar.2", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado6",{"GRUPO RESTRICAO - Copiar.1"}),
+				    #"Linhas Filtradas3" = Table.SelectRows(#"Colunas Removidas", each true),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Linhas Filtradas3",{{"GRUPO RESTRICAO - Copiar.2", "KM/L OU L/H"}, {"INFORMACAO ADIDIONAL 1", "UNIDADE"}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Colunas Renomeadas1",{"PLACA", "MODELO VEICULO", "NUMERO FROTA", "ANO"}),
+				    #"Linhas Filtradas4" = Table.SelectRows(#"Outras Colunas Removidas", each true),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Linhas Filtradas4", {"NUMERO FROTA"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

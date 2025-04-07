@@ -1,0 +1,423 @@
+table 'fTransações validas'
+	lineageTag: a0d558f2-e713-4524-bebf-a26bdf0b5253
+
+	column 'CODIGO TRANSACAO'
+		dataType: string
+		lineageTag: 058550fa-8c38-4e32-9583-dabcae7ff1f9
+		summarizeBy: none
+		sourceColumn: CODIGO TRANSACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FORMA DE PAGAMENTO'
+		dataType: string
+		lineageTag: 0e794c9f-bbd2-4df7-85f3-79ca9df5c7e9
+		summarizeBy: none
+		sourceColumn: FORMA DE PAGAMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CODIGO CLIENTE'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4f2e564c-c211-44e5-976c-4d6830567f97
+		summarizeBy: sum
+		sourceColumn: CODIGO CLIENTE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME REDUZIDO'
+		dataType: string
+		lineageTag: f0ea44c8-faec-49d2-b858-08163caf5884
+		summarizeBy: none
+		sourceColumn: NOME REDUZIDO
+
+		annotation SummarizationSetBy = Automatic
+
+	column PLACA
+		dataType: string
+		lineageTag: 965484d0-19dc-416d-97ec-6dad2c7d6b3f
+		summarizeBy: none
+		sourceColumn: PLACA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO FROTA'
+		dataType: string
+		lineageTag: 65203d94-6f27-41f8-9214-38a66eb3a169
+		summarizeBy: none
+		sourceColumn: TIPO FROTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'MODELO VEICULO'
+		dataType: string
+		lineageTag: e74aebae-e41e-45c9-9ca9-46d30905dcd7
+		summarizeBy: none
+		sourceColumn: MODELO VEICULO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NUMERO FROTA'
+		dataType: string
+		lineageTag: a8947125-bac7-4549-8efa-3a2f576d905b
+		summarizeBy: none
+		sourceColumn: NUMERO FROTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column ANO
+		dataType: int64
+		formatString: 0
+		lineageTag: 1c0d32d6-bd66-4fda-874b-079c46fa4157
+		summarizeBy: sum
+		sourceColumn: ANO
+
+		annotation SummarizationSetBy = Automatic
+
+	column MATRICULA
+		dataType: string
+		lineageTag: 0fe73543-251a-45fe-bf92-00f5691ae8fb
+		summarizeBy: none
+		sourceColumn: MATRICULA
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME MOTORISTA'
+		dataType: string
+		lineageTag: 2bd597ce-ea51-47cc-82f9-0c9c84692331
+		summarizeBy: none
+		sourceColumn: NOME MOTORISTA
+
+		annotation SummarizationSetBy = Automatic
+
+	column SERVICO
+		dataType: string
+		lineageTag: 015b357b-171b-4758-b9d0-288faf301936
+		summarizeBy: none
+		sourceColumn: SERVICO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO COMBUSTIVEL'
+		dataType: string
+		lineageTag: 616e8702-08a2-4db0-afe2-607a1ebe7977
+		summarizeBy: none
+		sourceColumn: TIPO COMBUSTIVEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column LITROS
+		dataType: double
+		lineageTag: 69a32732-7617-4fbb-9246-13eeb2fef78b
+		summarizeBy: sum
+		sourceColumn: LITROS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column VL/LITRO
+		dataType: double
+		lineageTag: 2954d10d-7584-40e8-88dd-b5ab060cd3d6
+		summarizeBy: sum
+		sourceColumn: VL/LITRO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'HODOMETRO OU HORIMETRO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 040f5431-16dd-4ca6-b872-bd96536a94f9
+		summarizeBy: sum
+		sourceColumn: HODOMETRO OU HORIMETRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KM RODADOS OU HORAS TRABALHADAS'
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d6c0a98-d843-4566-861a-70fbbbf6f8e5
+		summarizeBy: sum
+		sourceColumn: KM RODADOS OU HORAS TRABALHADAS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KM/LITRO OU LITROS/HORA'
+		dataType: double
+		lineageTag: e39e0ce8-41f0-4f41-9558-84e85c407c51
+		summarizeBy: sum
+		sourceColumn: KM/LITRO OU LITROS/HORA
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'VALOR EMISSAO'
+		dataType: double
+		lineageTag: 5c8cc3ce-8a7f-4e51-825e-2cfef0a7e85c
+		summarizeBy: sum
+		sourceColumn: VALOR EMISSAO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'CODIGO ESTABELECIMENTO'
+		dataType: string
+		lineageTag: cb37b949-3170-4336-ae5a-c62b8ec9aab6
+		summarizeBy: none
+		sourceColumn: CODIGO ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME ESTABELECIMENTO'
+		dataType: string
+		lineageTag: a9deb42c-4a06-45f8-8a0a-f2d5888f7598
+		summarizeBy: none
+		sourceColumn: NOME ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO ESTABELECIMENTO'
+		dataType: string
+		lineageTag: b325550d-1f47-4a2c-a90b-402a866ab1fa
+		summarizeBy: none
+		sourceColumn: TIPO ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDERECO
+		dataType: string
+		lineageTag: ba227363-64ff-42ba-8c15-5ad0426cd01b
+		summarizeBy: none
+		sourceColumn: ENDERECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column BAIRRO
+		dataType: string
+		lineageTag: 45cc8f11-a57c-40af-a249-e6a1380bfd1b
+		summarizeBy: none
+		sourceColumn: BAIRRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIDADE
+		dataType: string
+		lineageTag: 8a3ec9a0-a3c7-4332-b0fb-1d50a9f9a449
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: CIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: a135cfbb-e4f1-4ff2-8bb9-93009f7289d1
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column UNIDADE
+		dataType: string
+		lineageTag: 23ebe033-17b0-4b9f-a7b3-c872c94a0f0a
+		summarizeBy: none
+		sourceColumn: UNIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INFORMACAO ADIDIONAL 2'
+		dataType: string
+		lineageTag: d3986cea-d834-405a-b645-88c9435662b2
+		summarizeBy: none
+		sourceColumn: INFORMACAO ADIDIONAL 2
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INFORMACAO ADIDIONAL 3'
+		dataType: string
+		lineageTag: 82a3b50c-350f-41a9-b6a2-38057b6a0c58
+		summarizeBy: none
+		sourceColumn: INFORMACAO ADIDIONAL 3
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INFORMACAO ADIDIONAL 4'
+		dataType: string
+		lineageTag: 69370c04-768b-4fd4-8fba-ac570451a79a
+		summarizeBy: none
+		sourceColumn: INFORMACAO ADIDIONAL 4
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'INFORMACAO ADIDIONAL 5'
+		dataType: string
+		lineageTag: 94c29e8e-d9c3-419a-ad08-d8cfd42e8387
+		summarizeBy: none
+		sourceColumn: INFORMACAO ADIDIONAL 5
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FORMA TRANSACAO'
+		dataType: string
+		lineageTag: e2867144-ec18-4aa4-bd8e-f787e4f19808
+		summarizeBy: none
+		sourceColumn: FORMA TRANSACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CODIGO LIBERACAO RESTRICAO'
+		dataType: int64
+		formatString: 0
+		lineageTag: 3360c6b1-0e88-42f7-ae62-e47127226d9c
+		summarizeBy: sum
+		sourceColumn: CODIGO LIBERACAO RESTRICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'SERIE POS'
+		dataType: string
+		lineageTag: 368049c8-d1e1-415b-80cd-a33bb03d7a45
+		summarizeBy: none
+		sourceColumn: SERIE POS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NUMERO CARTAO'
+		dataType: string
+		lineageTag: 9942ba85-3843-4289-a3e0-aafdd4638777
+		summarizeBy: none
+		sourceColumn: NUMERO CARTAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FAMILIA VEICULO'
+		dataType: string
+		lineageTag: 7196e333-fd24-4f1d-a9d7-5a5dca139ea5
+		summarizeBy: none
+		sourceColumn: FAMILIA VEICULO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GRUPO RESTRICAO'
+		dataType: string
+		lineageTag: df750f74-8871-49b8-a3b4-f99c6f5a4bb5
+		summarizeBy: none
+		sourceColumn: GRUPO RESTRICAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'CODIGO EMISSORA'
+		dataType: string
+		lineageTag: 071aaba0-7e22-4e7e-926b-461d9646daa1
+		summarizeBy: none
+		sourceColumn: CODIGO EMISSORA
+
+		annotation SummarizationSetBy = Automatic
+
+	column RESPONSAVEL
+		dataType: string
+		lineageTag: 5a43afaf-bf31-4baa-8b48-3d1fb0214b15
+		summarizeBy: none
+		sourceColumn: RESPONSAVEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAIS
+		dataType: string
+		lineageTag: aa71e625-3737-4ffa-b22c-33a07d79a30e
+		summarizeBy: none
+		sourceColumn: PAIS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ENDEREÇO COMPLETO'
+		dataType: string
+		lineageTag: 37d973ed-ea02-4732-ad16-c3cd677b73af
+		dataCategory: Address
+		summarizeBy: none
+		sourceColumn: ENDEREÇO COMPLETO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'DATA TRANSACAO'
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 4f5e69d2-8b96-4108-ae01-be11261e3d70
+		summarizeBy: none
+		sourceColumn: DATA TRANSACAO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'HORA TRANSAÇÃO'
+		dataType: dateTime
+		formatString: Long Time
+		lineageTag: 97d93612-27fd-49d7-a72e-5e0fdae2c802
+		summarizeBy: none
+		sourceColumn: HORA TRANSAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Time
+
+	column 'Hora arredondada' = HOUR('fTransações validas'[HORA TRANSAÇÃO])
+		formatString: 0
+		lineageTag: e8a208d4-1620-4e87-a3e2-cbd4be124a9d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'KM/L OU L/H'
+		dataType: string
+		lineageTag: 4d4f3296-e714-49c1-84e8-815c5ee8c710
+		summarizeBy: none
+		sourceColumn: KM/L OU L/H
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'fTransações validas' = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\trasacoes.xlsx"), null, true),
+				    Transações_Sheet = Fonte{[Item="Transações",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Transações_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CODIGO TRANSACAO", Int64.Type}, {"FORMA DE PAGAMENTO", type text}, {"CODIGO CLIENTE", Int64.Type}, {"NOME REDUZIDO", type text}, {"DATA TRANSACAO", type datetime}, {"PLACA", type text}, {"TIPO FROTA", type text}, {"MODELO VEICULO", type text}, {"NUMERO FROTA", type text}, {"ANO", Int64.Type}, {"MATRICULA", Int64.Type}, {"NOME MOTORISTA", type text}, {"SERVICO", type text}, {"TIPO COMBUSTIVEL", type text}, {"LITROS", type number}, {"VL/LITRO", type number}, {"HODOMETRO OU HORIMETRO", Int64.Type}, {"KM RODADOS OU HORAS TRABALHADAS", Int64.Type}, {"KM/LITRO OU LITROS/HORA", type number}, {"VALOR EMISSAO", type number}, {"CODIGO ESTABELECIMENTO", Int64.Type}, {"NOME ESTABELECIMENTO", type text}, {"TIPO ESTABELECIMENTO", type text}, {"ENDERECO", type text}, {"BAIRRO", type text}, {"CIDADE", type text}, {"UF", type text}, {"INFORMACAO ADIDIONAL 1", type text}, {"INFORMACAO ADIDIONAL 2", type text}, {"INFORMACAO ADIDIONAL 3", type text}, {"INFORMACAO ADIDIONAL 4", type any}, {"INFORMACAO ADIDIONAL 5", type any}, {"FORMA TRANSACAO", type text}, {"CODIGO LIBERACAO RESTRICAO", Int64.Type}, {"SERIE POS", type text}, {"NUMERO CARTAO", Int64.Type}, {"FAMILIA VEICULO", type text}, {"GRUPO RESTRICAO", type text}, {"CODIGO EMISSORA", type any}, {"RESPONSAVEL", type text}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado", {"CODIGO TRANSACAO"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Erros Removidos",{{"NUMERO CARTAO", type text}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado1", "ENDEREÇO COMPLETO", each [ENDERECO]&", "&[BAIRRO]&", "&[CIDADE]&", "&[UF]&", "&[PAIS]),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"CODIGO TRANSACAO", type text}, {"DATA TRANSACAO", type datetime}, {"MATRICULA", type text}}),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(Table.TransformColumnTypes(#"Tipo Alterado2", {{"DATA TRANSACAO", type text}}, "pt-BR"), "DATA TRANSACAO", Splitter.SplitTextByDelimiter(" ", QuoteStyle.Csv), {"DATA TRANSACAO.1", "DATA TRANSACAO.2"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador",{{"DATA TRANSACAO.1", type date}, {"DATA TRANSACAO.2", type time}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado3",{{"DATA TRANSACAO.1", "DATA TRANSACAO"}, {"DATA TRANSACAO.2", "HORA TRANSAÇÃO"}}),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"CODIGO ESTABELECIMENTO", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado4", each true),
+				    #"Tipo Alterado5" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"NUMERO FROTA", type text}}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Tipo Alterado5", each true),
+				    #"Erros Removidos1" = Table.RemoveRowsWithErrors(#"Linhas Filtradas1", {"CODIGO LIBERACAO RESTRICAO"}),
+				    #"Erros Removidos2" = Table.RemoveRowsWithErrors(#"Erros Removidos1", {"NUMERO CARTAO"}),
+				    #"Linhas Filtradas2" = Table.SelectRows(#"Erros Removidos2", each ([#"KM/LITRO OU LITROS/HORA"] <> 0)),
+				    #"Coluna Duplicada" = Table.DuplicateColumn(#"Linhas Filtradas2", "GRUPO RESTRICAO", "GRUPO RESTRICAO - Copiar"),
+				    #"Dividir Coluna por Delimitador1" = Table.SplitColumn(#"Coluna Duplicada", "GRUPO RESTRICAO - Copiar", Splitter.SplitTextByDelimiter(" (", QuoteStyle.Csv), {"GRUPO RESTRICAO - Copiar.1", "GRUPO RESTRICAO - Copiar.2"}),
+				    #"Tipo Alterado6" = Table.TransformColumnTypes(#"Dividir Coluna por Delimitador1",{{"GRUPO RESTRICAO - Copiar.1", type text}, {"GRUPO RESTRICAO - Copiar.2", type text}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado6",{"GRUPO RESTRICAO - Copiar.1"}),
+				    #"Linhas Filtradas3" = Table.SelectRows(#"Colunas Removidas", each true),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Linhas Filtradas3",{{"GRUPO RESTRICAO - Copiar.2", "KM/L OU L/H"}, {"INFORMACAO ADIDIONAL 1", "UNIDADE"}}),
+				    #"Linhas Filtradas4" = Table.SelectRows(#"Colunas Renomeadas1", each true),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas4",")","",Replacer.ReplaceText,{"KM/L OU L/H"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído",null,"L/H",Replacer.ReplaceValue,{"KM/L OU L/H"})
+				in
+				    #"Valor Substituído1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

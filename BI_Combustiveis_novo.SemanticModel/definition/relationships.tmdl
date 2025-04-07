@@ -1,0 +1,58 @@
+relationship a81c9c07-dceb-4547-bbf9-3f0820aa608f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dCalendario.Data
+	toColumn: LocalDateTable_bc2270cc-46a0-4824-9807-d04b4e5d22c4.Date
+
+relationship f3fe7807-97cd-41c1-b492-c7cd857d82dd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: dCalendario.InicioMes
+	toColumn: LocalDateTable_7a009dbb-af28-4f5a-bfab-14b82e794cb6.Date
+
+relationship 3d0fa405-c36a-8eb0-638d-b4bd952cd49d
+	fromColumn: 'fTransacoes protegidas'.'Data Transação'
+	toColumn: dCalendario.Data
+
+relationship ca6afd2e-5fc9-82db-b3fd-0060a6ecd391
+	fromColumn: 'fTransações validas'.'DATA TRANSACAO'
+	toColumn: dCalendario.Data
+
+relationship 66c62773-273b-ffc2-3435-53cdb80d00ba
+	fromColumn: 'fTransações validas'.'CODIGO ESTABELECIMENTO'
+	toColumn: dEstabelecimento.'CODIGO ESTABELECIMENTO'
+
+relationship 776bf782-60e6-04f0-d7cc-54ee09cb71e9
+	fromColumn: 'fTransacoes protegidas'.'Hora arredondada'
+	toColumn: dHorario.'Hora arredondada'
+
+relationship bfffa526-4f41-ee34-46de-ffff7b9b97da
+	fromColumn: 'fTransações validas'.'Hora arredondada'
+	toColumn: dHorario.'Hora arredondada'
+
+relationship dc56fa55-c4ba-37d2-a77c-a3fdcf60c9a0
+	fromColumn: 'fTransações validas'.'NUMERO FROTA'
+	toColumn: dFrotas.'NUMERO FROTA'
+
+relationship AutoDetected_2951a744-2651-4e9c-8eea-d8bf7b05fcde
+	fromColumn: 'fTransações validas'.MATRICULA
+	toColumn: dMotorista.MATRICULA
+
+relationship 4996e301-0937-6ecc-6d0a-3877ffd0184f
+	fromColumn: 'fTransacoes protegidas'.Matrícula
+	toColumn: dMotorista.MATRICULA
+
+relationship b0ea7713-d58e-e3ab-2928-2fddaf6f9f7a
+	fromColumn: 'fTransações validas'.'TIPO COMBUSTIVEL'
+	toColumn: dCombustível.'Tipo de Combustível'
+
+relationship b1aef76f-cb2d-6d68-a677-49ad1e28623d
+	fromColumn: 'fTransacoes protegidas'.'Tipo combustivel'
+	toColumn: dCombustível.'Tipo de Combustível'
+
+relationship AutoDetected_8d020410-8fa0-430a-be58-5df0daaf0ecc
+	fromColumn: 'fTransacoes protegidas'.UNIDADE
+	toColumn: dUnidade.UNIDADE
+
+relationship AutoDetected_db4cdace-9994-4855-951b-f3d658e145c1
+	fromColumn: 'fTransações validas'.UNIDADE
+	toColumn: dUnidade.UNIDADE
+

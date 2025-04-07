@@ -1,0 +1,104 @@
+table dEstabelecimento
+	lineageTag: 8112ab41-57c4-457c-b75d-597952cda2f9
+
+	column 'CODIGO ESTABELECIMENTO'
+		dataType: string
+		lineageTag: bcd416ce-cb1d-45ab-ab9b-987613fd3e21
+		summarizeBy: none
+		sourceColumn: CODIGO ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'NOME ESTABELECIMENTO'
+		dataType: string
+		lineageTag: 045fd5e9-6f19-4309-8e9e-4bb09c5b2ed1
+		summarizeBy: none
+		sourceColumn: NOME ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'TIPO ESTABELECIMENTO'
+		dataType: string
+		lineageTag: 83d5218a-5d59-4f91-bfce-ba46cff6168f
+		summarizeBy: none
+		sourceColumn: TIPO ESTABELECIMENTO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ENDERECO
+		dataType: string
+		lineageTag: b64c2d8d-d801-4bb1-8e7a-965d310a0c9a
+		summarizeBy: none
+		sourceColumn: ENDERECO
+
+		annotation SummarizationSetBy = Automatic
+
+	column BAIRRO
+		dataType: string
+		lineageTag: a5534f67-2a35-4cb3-a52e-b84fa31addad
+		summarizeBy: none
+		sourceColumn: BAIRRO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CIDADE
+		dataType: string
+		lineageTag: 24f02f41-8e6f-4a3e-8304-2b6a46d15725
+		summarizeBy: none
+		sourceColumn: CIDADE
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: 44c961f5-6c3c-40a1-8d0b-422b18cb784d
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAIS
+		dataType: string
+		lineageTag: 14b820fe-b56a-422d-b603-0e7511a1e47a
+		summarizeBy: none
+		sourceColumn: PAIS
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Localidade Completa' = dEstabelecimento[ENDERECO]&", "&dEstabelecimento[CIDADE]&", "&dEstabelecimento[UF]&", "&dEstabelecimento[PAIS]
+		lineageTag: f2cc3d5d-e6ca-4d1e-9cdd-110c463a9237
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Localidade = dEstabelecimento[PAIS]&", "&dEstabelecimento[CIDADE]&", "&dEstabelecimento[UF]
+		lineageTag: 8eb98688-e2d7-41f8-ad9c-c269fbcae1df
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dEstabelecimento = m
+		mode: import
+		queryGroup: Dimenção
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\trasacoes.xlsx"), null, true),
+				    Transações_Sheet = Fonte{[Item="Transações",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Transações_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"CODIGO TRANSACAO", Int64.Type}, {"FORMA DE PAGAMENTO", type text}, {"CODIGO CLIENTE", Int64.Type}, {"NOME REDUZIDO", type text}, {"DATA TRANSACAO", type datetime}, {"PLACA", type text}, {"TIPO FROTA", type text}, {"MODELO VEICULO", type text}, {"NUMERO FROTA", type text}, {"ANO", Int64.Type}, {"MATRICULA", Int64.Type}, {"NOME MOTORISTA", type text}, {"SERVICO", type text}, {"TIPO COMBUSTIVEL", type text}, {"LITROS", type number}, {"VL/LITRO", type number}, {"HODOMETRO OU HORIMETRO", Int64.Type}, {"KM RODADOS OU HORAS TRABALHADAS", Int64.Type}, {"KM/LITRO OU LITROS/HORA", type number}, {"VALOR EMISSAO", type number}, {"CODIGO ESTABELECIMENTO", Int64.Type}, {"NOME ESTABELECIMENTO", type text}, {"TIPO ESTABELECIMENTO", type text}, {"ENDERECO", type text}, {"BAIRRO", type text}, {"CIDADE", type text}, {"UF", type text}, {"INFORMACAO ADIDIONAL 1", type text}, {"INFORMACAO ADIDIONAL 2", type text}, {"INFORMACAO ADIDIONAL 3", type text}, {"INFORMACAO ADIDIONAL 4", type any}, {"INFORMACAO ADIDIONAL 5", type any}, {"FORMA TRANSACAO", type text}, {"CODIGO LIBERACAO RESTRICAO", Int64.Type}, {"SERIE POS", type text}, {"NUMERO CARTAO", Int64.Type}, {"FAMILIA VEICULO", type text}, {"GRUPO RESTRICAO", type text}, {"CODIGO EMISSORA", type any}, {"RESPONSAVEL", type text}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado", {"CODIGO TRANSACAO"}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Erros Removidos",{{"NUMERO CARTAO", type text}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado1", "ENDEREÇO COMPLETO", each [ENDERECO]&", "&[BAIRRO]&", "&[CIDADE]&", "&[UF]&", "&[PAIS]),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"CODIGO TRANSACAO", type text}, {"DATA TRANSACAO", type date}, {"MATRICULA", type text}}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(#"Tipo Alterado2",{"CODIGO ESTABELECIMENTO", "NOME ESTABELECIMENTO", "TIPO ESTABELECIMENTO", "ENDERECO", "BAIRRO", "CIDADE", "UF", "PAIS"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Outras Colunas Removidas",{{"CODIGO ESTABELECIMENTO", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado3", each true),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Linhas Filtradas", {"CODIGO ESTABELECIMENTO"}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Duplicatas Removidas", each true)
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

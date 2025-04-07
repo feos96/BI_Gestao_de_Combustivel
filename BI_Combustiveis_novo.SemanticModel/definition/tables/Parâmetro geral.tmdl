@@ -1,0 +1,51 @@
+table 'Parâmetro geral'
+	lineageTag: b100d2e2-0bd1-4f32-90b4-ea6857b1b628
+
+	column Parâmetro
+		lineageTag: e7c15830-2823-446e-b1f4-fa9523254f61
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Campos'
+		isHidden
+		lineageTag: b030d2ce-2fc7-40c7-831e-f57a97617f07
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 67057847-338b-4ece-85ee-28ed1676d48d
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parâmetro geral' = calculated
+		mode: import
+		source =
+				{
+				    ("R$ total", NAMEOF('Medidas'[R$ Total geral]), 0),
+				    ("Litros", NAMEOF('Medidas'[Total geral litros]), 1),
+				    ("Qntd. transacoes", NAMEOF('Medidas'[Total de Transacoes Válidas contagem]), 2),
+				    ("R$ médio abast.", NAMEOF('Medidas'[Valor médio abastecido]), 3),
+				    ("R$ litro médio", NAMEOF('Medidas'[R$ litro medio]), 4)
+				}
+
+	annotation PBI_Id = 1a36736f9fae4e73866083865f71104a
+

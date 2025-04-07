@@ -1,0 +1,48 @@
+table 'Parâmetro transações '
+	lineageTag: 286cd01c-f5a4-4a2b-afde-efcf49db54f4
+
+	column 'Parâmetro transações'
+		lineageTag: 0e2c1f52-9d60-4b2c-9a67-f96d77dddbfd
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro transações  Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro transações  Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro transações  Campos'
+		isHidden
+		lineageTag: 160901ff-5366-4b16-9466-6bf7bc90aa70
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro transações  Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro transações  Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: da58c667-6819-42c5-bb0e-2eed348f0b3d
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parâmetro transações ' = calculated
+		mode: import
+		source =
+				{
+				    ("Unidade", NAMEOF('dUnidade'[UNIDADE]), 0),
+				    ("Motorista", NAMEOF('dMotorista'[NOME MOTORISTA]), 1)
+				}
+
+	annotation PBI_Id = 3f884962f613466ab27c9b45c758c883
+

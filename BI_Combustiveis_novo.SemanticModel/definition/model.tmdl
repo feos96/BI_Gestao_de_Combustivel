@@ -1,0 +1,45 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Dimenção
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Fato
+
+	annotation PBI_QueryGroupOrder = 1
+
+annotation PBI_QueryOrder = ["fTransacoes protegidas","dCalendario","fTransações validas","dEstabelecimento","dHorario","dFrotas","dMotorista","dCombustível","dUnidade"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.141.1253.0 (25.03)+74f9999a1e95f78c739f3ea2b96ba340e9ba8729
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table 'fTransacoes protegidas'
+ref table DateTableTemplate_6bb2c91f-7cf2-4e69-b782-089d62adde4b
+ref table Medidas
+ref table dCalendario
+ref table LocalDateTable_bc2270cc-46a0-4824-9807-d04b4e5d22c4
+ref table LocalDateTable_7a009dbb-af28-4f5a-bfab-14b82e794cb6
+ref table 'fTransações validas'
+ref table dEstabelecimento
+ref table dHorario
+ref table dFrotas
+ref table dMotorista
+ref table 'Parâmetro postos'
+ref table 'Parâmetro transações '
+ref table 'Parâmetro data'
+ref table 'Parâmetro geral'
+ref table 'Parâmetro posto2'
+ref table dCombustível
+ref table dUnidade
+
+ref cultureInfo pt-BR
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BI_Combustiveis_novo"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "adedc6e1-7072-477f-80de-7a71fc7d943c"
+  }
+}

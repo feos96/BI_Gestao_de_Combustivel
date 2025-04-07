@@ -1,0 +1,285 @@
+table Medidas
+	lineageTag: 2c36d3ff-aef2-496f-9eb0-7b6c1b94a32d
+
+	measure '% litros externo' = [Total litros externo] / SUM(('fTransações validas'[LITROS]))
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Percentual
+		lineageTag: 78cc6bc2-52ba-4e57-8ccd-12f3b5277c35
+
+	measure dias = DISTINCTCOUNT('fTransações validas'[DATA TRANSACAO])
+		displayFolder: Outras
+		lineageTag: 9946969f-cd51-496d-954f-c394f1d9a6a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% litros interno' = (CALCULATE(DIVIDE([Total litros interno], [Total geral litros])))
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Percentual
+		lineageTag: e6dfe579-b676-4e90-8c72-6db0d2cc44d2
+
+	measure '% Transações p/ libração' = [Liberações por dia] / [Total liberações por dia]
+		displayFolder: Percentual
+		lineageTag: a71401de-a324-467c-a45c-71f43b750de4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '% liberação' = DIVIDE([Total de Liberação],[Total de Transacoes Válidas contagem],0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Percentual
+		lineageTag: 145fed7c-15d7-4425-856d-a673b71b9274
+
+	measure 'FILTRA DADOS TRANSACOES VALIDAS' = COUNTROWS('fTransações validas')
+		formatString: 0
+		displayFolder: Outras
+		lineageTag: 79b0500e-8eb6-4ef8-90af-1ebc181c306b
+
+	measure 'Soma KM Rodado' = CALCULATE(SUM('fTransações validas'[KM RODADOS OU HORAS TRABALHADAS]),'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS]>0, 'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS] < 2000, 'fTransações validas'[TIPO COMBUSTIVEL] <> "Arla 32")
+		formatString: #,0
+		displayFolder: Outras
+		lineageTag: 88f518b8-01a4-49af-bd29-cdf11873de11
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Cor do grafico consumo' = IF([Consumo geral] > AVERAGE('fTransações validas'[KM/LITRO OU LITROS/HORA]), "#084F8C", "#ED1C24")
+		displayFolder: Outras
+		lineageTag: 8ff73a2c-1ecb-47ba-9333-f2d6c5316b96
+
+	measure 'Liberações por dia' = DIVIDE([Total de Liberação], 'Medidas'[dias])
+		displayFolder: Transações
+		lineageTag: f042b901-bcbf-4e6e-901a-8b1b5a9d2d3c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total de Liberação' = COUNT('fTransações validas'[CODIGO LIBERACAO RESTRICAO])
+		formatString: #,0
+		displayFolder: Transações
+		lineageTag: 2b06e1a1-dc06-4564-b6ed-3ce8b5581c10
+
+	measure 'Total de Transacoes Válidas contagem' = COUNT('fTransações validas'[CODIGO TRANSACAO])
+		formatString: #,0
+		displayFolder: Transações
+		lineageTag: f7dd440a-8b47-4f5e-94a3-21e5288d2716
+
+	measure 'Total geral Transacoes' = [Total Transações Protegidas] + [Total Transações validas] + [Total de Liberação]
+		formatString: #,0
+		displayFolder: Transações
+		lineageTag: 9c4fe2c7-d419-419c-b8dd-f348221ca974
+
+	measure 'Total liberações por dia' = [Total de Liberação] / 'Medidas'[dias]
+		displayFolder: Transações
+		lineageTag: bed6b1bf-d4db-4229-8a58-951f1e13e964
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total por hora' = (([Total de Liberação] + [Total de Transacoes Válidas contagem] + [Total Transações Protegidas]) / 24)
+		formatString: 0
+		displayFolder: Transações
+		lineageTag: b06783d3-dc32-4ccf-8539-13bb3893cccc
+
+	measure 'Total Transações Protegidas' = COUNT('fTransacoes protegidas'[Transação Protegida])
+		formatString: #,0
+		displayFolder: Transações
+		lineageTag: ffd63356-d82a-444f-8cfa-51f7d76a586d
+
+	measure 'Total Transações validas' = [Total de Transacoes Válidas contagem] - [Total de Liberação]
+		formatString: #,0
+		displayFolder: Transações
+		lineageTag: 2c9e9c0b-5521-432b-a256-4e5736d00c90
+
+	measure 'R$ litro medio' = ```
+			CALCULATE(
+			    AVERAGE('fTransações validas'[VL/LITRO]),
+			    FILTER(
+			        'fTransações validas',
+			        'fTransações validas'[TIPO COMBUSTIVEL] <> "Arla 32"),
+			        'fTransações validas'[VL/LITRO]<10)
+			
+			```
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: 9577958e-4688-49fd-b25a-682de4a3e007
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'R$ por combustivel' = CALCULATE(SUM('fTransações validas'[VALOR EMISSAO]),'fTransações validas'[TIPO COMBUSTIVEL] <> "Arla 32")
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: 0cf152ba-387a-48a4-9c9f-129d0f6eb363
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'R$ total externo' = CALCULATE(SUM('fTransações validas'[VALOR EMISSAO]), 'fTransações validas'[NOME ESTABELECIMENTO] <> "ESTABELECIMENTO INTERNO MAKRO ENGENHARIA")
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: ff6dca08-1bdb-4d20-b53b-7e9187df23a0
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'R$ Total geral' = CALCULATE(SUM('fTransações validas'[VALOR EMISSAO]), 'fTransações validas'[PLACA] <> "COM0724", 'fTransações validas'[PLACA] <> "COM0711", 'fTransações validas'[PLACA] <> "COM0376", 'fTransações validas'[PLACA] <> "COM0963")
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: 46a53ae7-5e31-476c-9c68-42958baf2cab
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'R$ total interno' = CALCULATE(SUM('fTransações validas'[VALOR EMISSAO]), 'fTransações validas'[NOME ESTABELECIMENTO] = "ESTABELECIMENTO INTERNO MAKRO ENGENHARIA")
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: d37f7233-4cdf-4813-a6cb-0a5d578175d1
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'Valor médio abastecido' = AVERAGE('fTransações validas'[VALOR EMISSAO])
+		formatString: "R$"#,0.00;-"R$"#,0.00;"R$"#,0.00
+		displayFolder: R$
+		lineageTag: 07fa942c-c0b7-455e-9a22-7960827169b7
+
+		annotation PBI_FormatHint = {"currencyCulture":"es-BR"}
+
+	measure 'Total geral litros' = CALCULATE(SUM('fTransações validas'[LITROS]), 'fTransações validas'[PLACA] <> "COM0724", 'fTransações validas'[PLACA] <> "COM0711", 'fTransações validas'[PLACA] <> "COM0376", 'dCombustível'[Tipo de Combustível] <> "Arla 32")
+		formatString: #,0.00
+		displayFolder: Volume
+		lineageTag: e29f7763-6b2f-432e-8514-e9a8b821ecf6
+
+	measure 'Total litros externo' = CALCULATE(SUM('fTransações validas'[LITROS]), 'fTransações validas'[TIPO ESTABELECIMENTO] <> "ESTABELECIMENTO INTERNO", 'fTransações validas'[PLACA] <> "COM0724", 'fTransações validas'[PLACA] <> "COM0711", 'fTransações validas'[PLACA] <> "COM0376", 'fTransações validas'[PLACA] <> "COM0963", 'dCombustível'[Tipo de Combustível] <> "Arla 32")
+		formatString: #,0.00
+		displayFolder: Volume
+		lineageTag: 73a6c5ac-51b9-4259-8f1f-c68442dc8e6d
+
+	measure 'Total litros interno' = CALCULATE(SUM('fTransações validas'[LITROS]), 'fTransações validas'[NOME ESTABELECIMENTO] = "ESTABELECIMENTO INTERNO MAKRO ENGENHARIA", 'fTransações validas'[PLACA] <> "COM0724", 'fTransações validas'[PLACA] <> "COM0711", 'fTransações validas'[PLACA] <> "COM0376", 'fTransações validas'[PLACA] <> "COM0963", 'dCombustível'[Tipo de Combustível] <> "Arla 32")
+		displayFolder: Volume
+		lineageTag: 320d8106-1bd9-425d-9879-633117e2ad96
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total litros protegidas' = CALCULATE(SUM('fTransacoes protegidas'[Litros]), 'fTransações validas'[PLACA] <> "COM0724", 'fTransações validas'[PLACA] <> "COM0711", 'fTransações validas'[PLACA] <> "COM0376", 'fTransações validas'[PLACA] <> "COM0963", 'dCombustível'[Tipo de Combustível] <> "Arla 32")
+		displayFolder: Volume
+		lineageTag: 7ce813fd-0d22-4a74-8009-2a3f5f3119b1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total litros validas' = CALCULATE(SUM('fTransações validas'[LITROS]))
+		displayFolder: Transações
+		lineageTag: cebb648a-4ce2-4431-ae9e-5ff0f5e6da91
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consumo geral' = CALCULATE(AVERAGE('fTransações validas'[KM/LITRO OU LITROS/HORA]), 'fTransações validas'[TIPO COMBUSTIVEL] <> "Arla 32",'fTransações validas'[KM/LITRO OU LITROS/HORA] > 0.3, 'fTransações validas'[KM/LITRO OU LITROS/HORA] < 22, 'fTransações validas'[MODELO VEICULO] <> "CG")
+		displayFolder: Consumo
+		lineageTag: fefc454e-04c0-48fc-9ef3-b12271bedb80
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consumo KM/L' = CALCULATE(AVERAGE('fTransações validas'[KM/LITRO OU LITROS/HORA]), 'fTransações validas'[TIPO COMBUSTIVEL] <> "Arla 32",'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS] < 800, 'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS] > 6, 'fTransações validas'[MODELO VEICULO] <> "CG")
+		displayFolder: Consumo
+		lineageTag: 3fc3256a-7dbd-44ac-9d49-b50e228545de
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consumo L/H' = CALCULATE(AVERAGE('fTransações validas'[KM/LITRO OU LITROS/HORA]),'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS] < 800, 'fTransações validas'[KM RODADOS OU HORAS TRABALHADAS] > 6, 'fTransações validas'[KM/L OU L/H] <> "KM/L")
+		displayFolder: Consumo
+		lineageTag: 5a092f41-bb6d-44f6-b507-612c6ff226b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Km Rodado Semana Passada' = ```
+			
+			VAR MaxData = MAX('fTransações validas'[DATA TRANSACAO])
+			RETURN
+			    CALCULATE(
+			        [Soma KM Rodado],
+			        DATESINPERIOD('fTransações validas'[DATA TRANSACAO], MaxData, -7, DAY)
+			    )
+			
+			
+			```
+		formatString: #,0
+		displayFolder: Outras
+		lineageTag: 1fca4cc0-3393-40a4-bcc1-36da39eeb6c6
+
+	measure 'Km Rodado Semana Retrasada' = ```
+			
+			VAR MaxData = MAX('fTransações validas'[DATA TRANSACAO])
+			RETURN
+			    CALCULATE(
+			        [Soma KM Rodado],
+			        DATESINPERIOD('fTransações validas'[DATA TRANSACAO], MaxData - 7, -7, DAY)
+			    )
+			
+			```
+		formatString: #,0
+		displayFolder: Outras
+		lineageTag: 4bce518b-8db8-4f32-9470-5ecfdf4fba70
+
+	measure 'Variação % Km Rodado' =
+			
+			IF(
+			    [Km Rodado Semana Retrasada] <> 0,
+			    ([Km Rodado Semana Passada] - [Km Rodado Semana Retrasada]) / [Km Rodado Semana Retrasada],
+			    BLANK()
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Outras
+		lineageTag: 37e9902d-89ac-441c-87fc-b60556c6b113
+
+	measure 'Consumo Semana Passada' = ```
+			
+			VAR MaxData = MAX('fTransações validas'[DATA TRANSACAO])
+			RETURN
+			    CALCULATE(
+			        [Consumo geral],
+			        DATESINPERIOD('fTransações validas'[DATA TRANSACAO], MaxData, -7, DAY)
+			    )
+			
+			```
+		displayFolder: Consumo
+		lineageTag: 70770d5f-bbf0-4dfd-9333-63a679216d4e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consumo Semana Retrasada' = ```
+			
+			VAR MaxData = MAX('fTransações validas'[DATA TRANSACAO])
+			RETURN
+			    CALCULATE(
+			        [Consumo geral],
+			        DATESINPERIOD('fTransações validas'[DATA TRANSACAO], MaxData - 7, -7, DAY)
+			    )
+			
+			```
+		displayFolder: Consumo
+		lineageTag: 690a4cfc-011e-4b6c-b61b-252bbbd1b7c0
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Variação % Consumo' = ```
+			
+			IF(
+			    [Consumo Semana Retrasada] <> 0,
+			    ([Consumo Semana Passada] - [Consumo Semana Retrasada]) / [Consumo Semana Retrasada],
+			    BLANK()
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Consumo
+		lineageTag: 754def6e-dabc-4deb-baf3-9db54d30e996
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 1fc98467-8e29-456f-acae-52e239206ec2
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Medidas = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 812050e479404bd79c80a67eff9b95ce
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+

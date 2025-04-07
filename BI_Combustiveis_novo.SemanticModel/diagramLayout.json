@@ -1,0 +1,216 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 577.14285714285722,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "e95847d2-ef6b-4aba-92aa-1e0f1b62c483",
+          "size": {
+            "height": 128,
+            "width": 234
+          },
+          "zIndex": 11,
+          "expandedHeight": 395
+        },
+        {
+          "location": {
+            "x": 1022.2039465448229,
+            "y": 0
+          },
+          "nodeIndex": "dEstabelecimento",
+          "nodeLineageTag": "8112ab41-57c4-457c-b75d-597952cda2f9",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 374.720188902007,
+            "y": 529.80002951593872
+          },
+          "nodeIndex": "dHorario",
+          "nodeLineageTag": "3f192163-3393-4dfb-bbc5-fc175f46458a",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 404.28571428571433
+          },
+          "nodeIndex": "fTransacoes protegidas",
+          "nodeLineageTag": "c1bb9f6d-8429-4801-a1be-b27638788dca",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 431.04220779220776,
+            "y": 0
+          },
+          "nodeIndex": "fTransações validas",
+          "nodeLineageTag": "a0d558f2-e713-4524-bebf-a26bdf0b5253",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 28.571428571428612,
+            "y": 207.14285714285714
+          },
+          "nodeIndex": "dUnidade",
+          "nodeLineageTag": "ada60b16-646d-4357-a4ef-65f4513b3405",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 959.397571102084,
+            "y": 498.85610979929163
+          },
+          "nodeIndex": "dFrotas",
+          "nodeLineageTag": "b88407f0-ffda-4fd3-af20-e73a37a703fc",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1200.4896608305373,
+            "y": 264
+          },
+          "nodeIndex": "dMotorista",
+          "nodeLineageTag": "3cd8d565-9b72-4773-9e28-be080d340dd3",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1488.7753751162518,
+            "y": 0
+          },
+          "nodeIndex": "Parâmetro postos",
+          "nodeLineageTag": "abe4e55c-7094-43f3-a4ce-f7ec11cc15a9",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1506.7753751162513,
+            "y": 339.71428571428572
+          },
+          "nodeIndex": "Parâmetro transações ",
+          "nodeLineageTag": "286cd01c-f5a4-4a2b-afde-efcf49db54f4",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 1500.7753751162513,
+            "y": 506.85714285714283
+          },
+          "nodeIndex": "Parâmetro data",
+          "nodeLineageTag": "db7680e7-0afd-4c15-8ae2-de4738b4e2b0",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1790.7753751162513,
+            "y": 276.14285714285717
+          },
+          "nodeIndex": "Parâmetro geral",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 2074.7753751162513,
+            "y": 276.14285714285717
+          },
+          "nodeIndex": "Parâmetro posto2",
+          "nodeLineageTag": "cc515035-a126-49b4-93f3-ea87b6eee869",
+          "size": {
+            "height": 152,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 735.91823225910855,
+            "y": 0
+          },
+          "nodeIndex": "dCombustível",
+          "nodeLineageTag": "d8c38f81-8f16-42a2-bba5-3341e61c0153",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 649.979338842975,
+            "y": 461.22638724911462
+          },
+          "nodeIndex": "Medidas",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 70,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

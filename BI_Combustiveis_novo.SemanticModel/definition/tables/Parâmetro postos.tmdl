@@ -1,0 +1,50 @@
+table 'Parâmetro postos'
+	lineageTag: abe4e55c-7094-43f3-a4ce-f7ec11cc15a9
+
+	column 'Parâmetro postos'
+		lineageTag: c95a85c6-414d-4b3b-ac51-811b44fd6264
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parâmetro postos Pedido'
+
+		relatedColumnDetails
+			groupByColumn: 'Parâmetro postos Campos'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro postos Campos'
+		isHidden
+		lineageTag: 65ea37ac-4650-4f2e-b1bd-6e5d3c12a422
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parâmetro postos Pedido'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parâmetro postos Pedido'
+		isHidden
+		formatString: 0
+		lineageTag: 5b346d39-745b-412b-a217-2279723fe9ed
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parâmetro postos' = calculated
+		mode: import
+		source =
+				{
+				    ("Cidade", NAMEOF('dEstabelecimento'[CIDADE]), 0),
+				    ("Estado", NAMEOF('dEstabelecimento'[UF]), 1),
+				    ("Unidade", NAMEOF('dUnidade'[UNIDADE]), 2),
+				    ("Motorista", NAMEOF('dMotorista'[NOME MOTORISTA]), 3)
+				}
+
+	annotation PBI_Id = 40c65be24bc048c1a88890429b6325e6
+

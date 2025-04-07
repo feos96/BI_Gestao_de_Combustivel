@@ -1,0 +1,28 @@
+table dHorario
+	lineageTag: 3f192163-3393-4dfb-bbc5-fc175f46458a
+
+	column 'Hora arredondada'
+		dataType: int64
+		formatString: 0
+		lineageTag: a9a22c19-bea0-4e5a-9c88-3241bdbf69c7
+		summarizeBy: none
+		sourceColumn: Hora arredondada
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dHorario = m
+		mode: import
+		queryGroup: Dimenção
+		source =
+				let
+				    Fonte = Excel.Workbook(File.Contents("\\192.168.0.37\Powerbi\Operacao - Reestruturacao BI\1. Fonte de dados\Combustivel\dHorario.xlsx"), null, true),
+				    Plan1_Sheet = Fonte{[Item="Plan1",Kind="Sheet"]}[Data],
+				    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(Plan1_Sheet, [PromoteAllScalars=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Hora arredondada", Int64.Type}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+
